@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <title>Login and Reg</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Register Here!</h1>
+                <form action="user/register" method="post">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if 'first_name' in message.tags %}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" class="form-control" name="first_name" />
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if 'last_name' in message.tags%}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" class="form-control" name="last_name" />
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if 'email' in message.tags%}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" />
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if 'password' in message.tags%}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" />
+                    </div>
+                    {% if messages %}
+                    {% for message in messages %}
+                    {% if 'confirm_password' in message.tags%}
+                    <p style=color:red;>{{ message }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="confirm_password">Confirm Password:</label>
+                        <input type="password" class="form-control" name="confirm_password" />
+                    </div>
+                    <button class="btn btn-secondary">Register</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h1>Login Here!</h1>
+                <form action="user/login" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" />
+                    </div>
+                    <button class="btn btn-danger">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

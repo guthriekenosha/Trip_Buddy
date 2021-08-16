@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Buddy Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>Hello {{log_user_id.first_name}}!</h1>
+    <a href="/user/logout" class="float-sm-right">Logout</a>  <a href="/add_trip" class="btn btn-secondary float-right">Create a new trip!</a> |   
+    <h5>Your trips:</h5>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trips in trips %}
+            <tr>
+                <td><a href="{{ trips.id }}/trip_details">{{ trips.destination }}</a></td>
+                <td>{{ trips.start_date }}</td>
+                <td>{{ trips.end_date }}</td>
+                <td>{{ trips.plan }}</td>
+                <td><a href="/{{ trips.id }}/delete">Remove</a> | <a href="{{ trips.id }}/edit_trips">Edit</a> </td> 
+            </tr>
+        {% endfor %}
+        </tbody>
+</body>
+</html>
